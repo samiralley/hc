@@ -1,0 +1,26 @@
+<div id="chatbotWidget" class="chatbot-widget">
+    <div id="chatbotMessages"></div>
+    <form id="chatbotForm">
+        <input type="text" id="userMessage" class="form-control" placeholder="Type your message...">
+        <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+</div>
+
+<script>
+document.getElementById('chatbotForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const message = document.getElementById('userMessage').value;
+    
+    fetch('/backend/chatbot.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ message })
+    })
+    .then(response => response.json())
+    .then(data => {
+        const botMessage = data.choices[0].message.content;
+        document.getElementById('chatbotMessages').innerHTML += `<p><strong>Bot:</strong> ${botMessage}</p>`;
+    })
+    .catch(err => console.error(err));
+});
+</script>

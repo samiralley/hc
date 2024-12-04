@@ -1,0 +1,25 @@
+<div class="ai-search-widget">
+    <form id="aiSearchForm">
+        <input type="text" id="searchQuery" class="form-control" placeholder="Ask me anything...">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    <div id="searchResults" class="mt-3"></div>
+</div>
+
+<script>
+document.getElementById('aiSearchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const query = document.getElementById('searchQuery').value;
+    
+    fetch('/backend/ai_search.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ query })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('searchResults').innerHTML = `<p>${data.choices[0].text}</p>`;
+    })
+    .catch(err => console.error(err));
+});
+</script>

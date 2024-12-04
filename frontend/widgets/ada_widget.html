@@ -1,0 +1,20 @@
+<div id="adaWidget" class="ada-widget">
+    <button id="textResizeBtn">Increase Text Size</button>
+    <button id="contrastToggleBtn">Toggle Contrast</button>
+</div>
+
+<script>
+document.getElementById('textResizeBtn').addEventListener('click', () => {
+    document.body.style.fontSize = "larger";
+});
+document.getElementById('contrastToggleBtn').addEventListener('click', () => {
+    document.body.classList.toggle('high-contrast');
+});
+</script>
+
+<style>
+.high-contrast {
+    background-color: black;
+    color: white;
+}
+</style>
