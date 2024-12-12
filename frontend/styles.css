@@ -1,0 +1,13 @@
+/* Custom styles for SaaS Product */
+.card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+.card:hover {
+    transform: scale(1.02);
+    transition: transform 0.2s ease-in-out;
+}
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
